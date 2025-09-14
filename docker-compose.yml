@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SQL_HOST=mysql
+      - SQL_USER=${SQL_USER}
+      - SQL_PASS=${SQL_PASS}
+      - SQL_DB=${SQL_DB}
+      - REDIS_URL=redis://redis:6379
+      - SECRET_KEY=${SECRET_KEY}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - ACCOUNT_SSID=${ACCOUNT_SSID}
+      - ACCOUNT_AUTHTOKEN=${ACCOUNT_AUTHTOKEN}
+      - S3ENDPOINT=${S3ENDPOINT}
+      - S3ACCESSKEYID=${S3ACCESSKEYID}
+      - S3SECRETACCESSKEY=${S3SECRETACCESSKEY}
+      - R2BUCKET=${R2BUCKET}
+      - MYBUCKET=${MYBUCKET}
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./images:/app/images
+      - ./videos:/app/videos
+      - ./bnsLogo:/app/bnsLogo
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${SQL_DB}
+      - MYSQL_USER=${SQL_USER}
+      - MYSQL_PASSWORD=${SQL_PASS}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  redis_data: 

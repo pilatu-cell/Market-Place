@@ -1,0 +1,40 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "sendWhatsappMessage.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development  nodemon main.js",
+    "test": "cross-env NODE_ENV=test  nodemon main.js",
+    "prod": "cross-env NODE_ENV=production  nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.862.0",
+    "bcrypt": "^6.0.0",
+    "bootstrap": "^5.3.7",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.1",
+    "form-data": "^4.0.4",
+    "fs": "^0.0.1-security",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.1",
+    "mysql2": "^3.14.2",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^7.0.5",
+    "nodemon": "^3.1.10",
+    "redis": "^5.6.0",
+    "twilio": "^5.9.0",
+    "uuid": "^11.1.0"
+  }
+}
